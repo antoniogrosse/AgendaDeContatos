@@ -42,14 +42,6 @@ public class Contato {
         this.DataNasc = DataNasc;
     }
 
-    public String getDD_Telefone() {
-        return DD_Telefone;
-    }
-
-    public void setDD_Telefone(String DD_Telefone) {
-        this.DD_Telefone = DD_Telefone;
-    }
-
     public String getTelefone() {
         return Telefone;
     }
