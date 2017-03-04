@@ -31,8 +31,6 @@ public class telaCadastro extends javax.swing.JPanel {
         PainelCadastro = new javax.swing.JPanel();
         dataDeNascimento = new javax.swing.JFormattedTextField();
         labelTelefone = new javax.swing.JLabel();
-        ddTelefone = new javax.swing.JFormattedTextField();
-        telefone = new javax.swing.JFormattedTextField();
         labelEmail = new javax.swing.JLabel();
         email = new javax.swing.JTextField();
         salvar = new javax.swing.JButton();
@@ -41,6 +39,7 @@ public class telaCadastro extends javax.swing.JPanel {
         labelNome = new javax.swing.JLabel();
         voltar = new javax.swing.JButton();
         labelDataDeNascimento = new javax.swing.JLabel();
+        Telefone = new javax.swing.JFormattedTextField();
 
         PainelCadastro.setBorder(javax.swing.BorderFactory.createTitledBorder("Novo Contato"));
 
@@ -50,6 +49,7 @@ public class telaCadastro extends javax.swing.JPanel {
         } catch (java.text.ParseException ex) {
             ex.printStackTrace();
         }
+        dataDeNascimento.setText("");
         dataDeNascimento.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
         dataDeNascimento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -57,24 +57,9 @@ public class telaCadastro extends javax.swing.JPanel {
             }
         });
 
-        labelTelefone.setText("Telefone:");
+        labelTelefone.setText("Telefone: * ");
 
-        ddTelefone.setBorder(null);
-        try {
-            ddTelefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        telefone.setBorder(null);
-        try {
-            telefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("####-####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-        telefone.setFocusLostBehavior(javax.swing.JFormattedTextField.PERSIST);
-
-        labelEmail.setText("E-mail");
+        labelEmail.setText("E-mail: *");
 
         email.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -83,14 +68,25 @@ public class telaCadastro extends javax.swing.JPanel {
         });
 
         salvar.setText("Salvar");
+        salvar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                salvarActionPerformed(evt);
+            }
+        });
 
         limpar.setText("Limpar");
 
-        labelNome.setText("Nome:");
+        labelNome.setText("Nome: *");
 
         voltar.setText("Voltar");
 
         labelDataDeNascimento.setText("Data de Nascimento:");
+
+        try {
+            Telefone.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("(##)####-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         javax.swing.GroupLayout PainelCadastroLayout = new javax.swing.GroupLayout(PainelCadastro);
         PainelCadastro.setLayout(PainelCadastroLayout);
@@ -101,7 +97,7 @@ public class telaCadastro extends javax.swing.JPanel {
                 .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(PainelCadastroLayout.createSequentialGroup()
                         .addComponent(labelNome)
-                        .addGap(43, 43, 43)
+                        .addGap(18, 18, 18)
                         .addComponent(nome, javax.swing.GroupLayout.PREFERRED_SIZE, 282, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(PainelCadastroLayout.createSequentialGroup()
                         .addComponent(labelDataDeNascimento)
@@ -112,19 +108,16 @@ public class telaCadastro extends javax.swing.JPanel {
                             .addComponent(labelTelefone)
                             .addComponent(labelEmail))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(PainelCadastroLayout.createSequentialGroup()
-                                .addComponent(ddTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, 221, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(email, javax.swing.GroupLayout.DEFAULT_SIZE, 221, Short.MAX_VALUE)
                             .addGroup(PainelCadastroLayout.createSequentialGroup()
                                 .addComponent(salvar)
                                 .addGap(18, 18, 18)
                                 .addComponent(limpar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(voltar)))))
-                .addContainerGap(14, Short.MAX_VALUE))
+                                .addComponent(voltar))
+                            .addComponent(Telefone))))
+                .addContainerGap(35, Short.MAX_VALUE))
         );
         PainelCadastroLayout.setVerticalGroup(
             PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -140,9 +133,8 @@ public class telaCadastro extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelTelefone)
-                    .addComponent(ddTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(telefone, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(26, 26, 26)
+                    .addComponent(Telefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(28, 28, 28)
                 .addGroup(PainelCadastroLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(labelEmail)
                     .addComponent(email, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -151,7 +143,7 @@ public class telaCadastro extends javax.swing.JPanel {
                     .addComponent(salvar)
                     .addComponent(limpar)
                     .addComponent(voltar))
-                .addContainerGap(48, Short.MAX_VALUE))
+                .addContainerGap(49, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -174,11 +166,16 @@ public class telaCadastro extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_emailActionPerformed
 
+    private void salvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_salvarActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_salvarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel PainelCadastro;
+    private javax.swing.JFormattedTextField Telefone;
     public javax.swing.JFormattedTextField dataDeNascimento;
-    public javax.swing.JFormattedTextField ddTelefone;
     private javax.swing.JTextField email;
     private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JLabel labelDataDeNascimento;
@@ -188,7 +185,6 @@ public class telaCadastro extends javax.swing.JPanel {
     private javax.swing.JButton limpar;
     private javax.swing.JTextField nome;
     private javax.swing.JButton salvar;
-    public javax.swing.JFormattedTextField telefone;
     private javax.swing.JButton voltar;
     // End of variables declaration//GEN-END:variables
 }
